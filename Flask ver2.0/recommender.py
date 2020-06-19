@@ -6,7 +6,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from gensim.models import Word2Vec, FastText
 
 
-class Recommend_items:
+class Recommend_items: # Recommender version 1.0
     def __init__(self, data):
         self.data = data
         self.df = pd.DataFrame(self.data).T
