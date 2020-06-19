@@ -83,7 +83,7 @@ class Recommend_items:
         rating = [key for key, value in sorted(similarity.items(), key=lambda item: item[1], reverse=True)]
         return rating[:topn]
 
-class Form_filter():
+class Form_filter(): # 사용자가 문진표를 한 것을 바탕으로 필러링을 한 뒤 추천
     def __init__(self, data):
         self.data = data
         self.df = pd.DataFrame(data).T
