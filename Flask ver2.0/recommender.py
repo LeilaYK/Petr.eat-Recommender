@@ -6,7 +6,11 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from gensim.models import Word2Vec, FastText
 
 
+<<<<<<< HEAD
 class Recommend_items: # 충돌이 발생할까?g
+=======
+class Recommend_items: # Recommender version 1.0 / 단지 추천만 해주는 용도
+>>>>>>> origin/master
     def __init__(self, data):
         self.data = data
         self.df = pd.DataFrame(self.data).T
