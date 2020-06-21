@@ -32,3 +32,11 @@
  if __name__ == '__main__':
      app.run(host = '0.0.0.0')  # 모든 ip에 대해서 listen함. Flask를 실행해줌. 앞에 있어도 되고 뒤에 있어도 됨
 ```
+
+## 1-2) ngrok로 외부에서 로컬서버 접속 환경 구성하기
+- flask를 로컬에서 돌리는데 외부에서 접속이 가능하도록 구성하기
+- 설치는 요로로콤
+  - $ brew cask install ngrok
+- 사용은 요로로콤
+  - $ ngrok http 로컬서버포트
+  - $ ngrok http 5000
