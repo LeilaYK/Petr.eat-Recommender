@@ -6,11 +6,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from gensim.models import Word2Vec, FastText
 
 
-<<<<<<< HEAD
-class Recommend_items: # 충돌이 발생할까?g
-=======
-class Recommend_items: # Recommender version 1.0 / 단지 추천만 해주는 용도
->>>>>>> origin/master
+class Recommend_items:
     def __init__(self, data):
         self.data = data
         self.df = pd.DataFrame(self.data).T
@@ -87,12 +83,12 @@ class Recommend_items: # Recommender version 1.0 / 단지 추천만 해주는 �
         rating = [key for key, value in sorted(similarity.items(), key=lambda item: item[1], reverse=True)]
         return rating[:topn]
 
-# ver 2.0
-class Form_filter(): # 사용자가 문진표를 한 것을 바탕으로 필러링을 한 뒤 추천
+class Form_filter():
     def __init__(self, data):
         self.data = data
         self.df = pd.DataFrame(data).T
-        
+        self.df['tag_list'] = [' '.join(map(str, l)) for l in self.df['tag_list']]
+
     def recommend_by_condition(self, disease_input):
         good_items = []
         for item in self.df.index:
@@ -116,10 +112,26 @@ class Form_filter(): # 사용자가 문진표를 한 것을 바탕으로 필러�
         return cannot_eat_items
     
     def final_recommend(self, disease_input, allergy_input ):
+#         tag_list = {"닭": ["닭발", "닭안심", "닭가슴살"], "오리": ["오리안심", "오리목뼈", "오리근위", "오리가슴살", "오리장각", "오리 도가니", "오리 연골"], "소": ["우족", "사골뼈", "소떡심", "소고기(홍두깨살)", "소 간", "소 힘줄"], "계란흰자": ["달걀"], "계란 노른자": ["달걀"], "고구마": ["고구마", "호박고구마"], "해바라기유": ["해바라기씨유"]}
         good_items = self.recommend_by_condition(disease_input)
         cannot_eat_items = self.filter_allergy(allergy_input)
         final_recommend = {}
+        list_temp = []
         for good in good_items:
-            recommend = [item for item in self.data[good]['recommend_20'] if item not in cannot_eat_items]
-            final_recommend[good] = recommend
+            possible = True
+            for ingre in self.data[good]['ingredient']:
+                for allergy in allergy_input:
+                    if allergy in ingre:
+                        possible = False
+                        if possible == False:
+                            break
+                    if possible == False:
+                        break
+            if possible == True:
+                list_temp.append(good)
+        if len(list_temp) <= 3:
+            more_items = self.data[list_temp[0]]['recommend_20'][:4]
+            list_temp.extend(more_items)
+        list_temp = list(set(list_temp))
+        final_recommend['result'] = list_temp[:5]
         return final_recommend

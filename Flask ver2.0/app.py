@@ -10,17 +10,17 @@ with open('/Users/junghyunwoo/혀누에-의한-혀누ᄅ
 
 reco = Form_filter(data)
 
-def item_to_json(item_ids):
-    return jsonify({'recommend': item_ids})
-
 @app.route('/')
 
 @app.route('/recommend', methods=['GET'])
 def recommend():
-    # args = request.get_json(force=True)
-    # itemId = args.get('recommend_ids', [])
-    user_disease = ['췌장', '암']
-    user_allergy = ['닭', '오리', '황태']
+    args = request.get_json(force=True)
+    user_disease = args.get('user_disease', [])
+    user_allergy = args.get('user_allergy', [])
+
+    print(user_disease)
+    print(user_allergy)
+
     recommend_items = reco.final_recommend(user_disease, user_allergy)
     print(recommend_items)
     return recommend_items
