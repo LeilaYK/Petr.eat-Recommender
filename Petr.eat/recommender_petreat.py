@@ -5,7 +5,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 from gensim.models import Word2Vec, FastText
 
-
+# 첫 번째 모듈
 class Recommend_items:
     def __init__(self, data_path):
         with open(data_path, encoding="UTF-8") as f:
