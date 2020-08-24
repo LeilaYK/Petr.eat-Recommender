@@ -1,7 +1,8 @@
-# `Petr.eat Recommender (반려동물 간식 추천시스템)`
-`#NLP` `#word2vec` `#Flask` `#ngrok`
+<h1 align="center"><strong>🔎 Petr.eat Recommender (반려동물 간식 추천시스템)</strong></h3>
 
-# 1. Petr.eat 서비스 소개
+`#python` `#NLP` `#word2vec` `#Flask` `#ngrok`
+
+# 🚦 1. Petr.eat 서비스 소개
 - Petr.eat은 `인공지능 기반으로 반려동물 수제간식을 추천`해주는 커머스 플랫폼이다.
 - 기존 반려동물 간식을 제공해주는 사이트에서는 추천시스템을 사용하고 있지 않았다. 그래서 수제간식을 반려동물의 상태(건강, 알러지, 기호식품 등)에 따라 추천해주는 서비스를 만들고자 했다.
 - 상품별로 효능, 성분, #태그 등의 상품정보가 있었고 이를 기반으로 한 추천시스템을 만들었다. int로 된 값들은 아예 없었고 모두 텍스트 기반이었다.
@@ -9,7 +10,7 @@
 
 ---
 
-# 2. 추천방식
+# 🚦 2. 추천방식
 - 약 15여개 업체에서 공급받기로 한 상품은 약 100여개였다. 각 상품별로 유사한 상품과 반려동물 상태를 고려한 filter를 개발하고자 하였다.
 - 사용자의 구매내역에 따른 collaborative filtering과 log data에 따른 추천시스템도 구축해보고자 했으나 사용자 데이터의 부족으로 하지 못하였다.
 - 크케 추천시스템을 3가지 단계로 만들어보았다.
@@ -39,7 +40,7 @@
 
 ---
 
-# 3. 서버랑 API 주고받기
+# 🚦 3. 서버랑 API 주고받기
 - 서버 구축 (Ruby-on-Rails) & 추천시스템 구축 (Python 3)
 - Ruby-on-Rails에서 python 2까지만 호환이 된다고 해서 Flask로 Rails와 API를 주고받도록 구축했다.
 - Rails에서 사용자 정보를 넘겨주면 Flask에서 사용자에 맞게 추천된 상품을 반환하는 형식
@@ -64,7 +65,13 @@
 ## 3-2) ngrok로 외부에서 로컬서버 접속 환경 구성하기
 - Flask를 AWS EC2에 올려보려고 했는데 실패했음. 그래서 Flask를 로컬에서 돌리고 외부에서 접속이 가능하도록 구축했다.
 - 설치는 이렇게 하면 된다.
-  - $ brew cask install ngrok
+```python
+$ brew cask install ngrok
+```
+
 - 사용은 이렇게 하면 된다.
-  - $ ngrok http 로컬서버포트
-  - $ ngrok http 5000
+```python
+$ ngrok http 로컬서버포트
+$ ngrok http 5000
+```
+<h3 align="center"><strong>끗! 🙌</strong></h3>
